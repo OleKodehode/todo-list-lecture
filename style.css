@@ -217,3 +217,55 @@ input[type="text"],
 input:focus {
   outline: 3x solid var(--delete-button);
 }
+
+.modal {
+  margin: 15% auto;
+  display: grid;
+  place-content: center;
+  gap: 2em;
+  background-color: var(--content-background);
+  border: 3px solid var(--text);
+  background-image: url("./assets/warning.svg");
+  background-position: 50% 25%;
+  background-repeat: no-repeat;
+  background-size: 5em 5em;
+}
+
+dialog::backdrop {
+  background-color: hsla(0, 0%, 0%, 0.6);
+  -webkit-backdrop-filter: blur(2.5px);
+  backdrop-filter: blur(2.5px);
+}
+
+.modal-header {
+  display: grid;
+  place-content: flex-end;
+  background-color: var(--header);
+  height: 2em;
+  border-bottom: 3px solid var(--text);
+}
+
+.modal-header-btn {
+  padding: 0.2em 0.4em;
+  margin: 0.2em 0.2em;
+}
+
+.modal-btn {
+  margin: 1em;
+}
+
+.modal > p {
+  margin: 4em 1em 0 1em;
+}
+
+.confirm {
+  background-color: var(--content-background);
+}
+
+.confirm:hover {
+  background-color: var(--odd-content);
+}
+
+.modal-btn-container {
+  margin: 0 auto;
+}
