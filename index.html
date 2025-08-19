@@ -7,14 +7,18 @@
     <link rel="stylesheet" href="style.css" />
     <script src="./app.js" defer></script>
   </head>
-  <body></body>
-  <header>
-    <h1>Todo List</h1>
-    <input type="checkbox" name="show-completed" id="complete-filter" />
-    <form id="task-form">
-      <input type="text" name="task-input" id="description-input" />
-      <input type="submit" />
-    </form>
-  </header>
-  <main id="list-container"></main>
+  <body>
+    <header>
+      <h1>Todo List</h1>
+      <div class="complete-filter-container">
+        <label for="complete-filter">Show completed: </label>
+        <input type="checkbox" name="show-completed" id="complete-filter" />
+      </div>
+      <form id="task-form">
+        <input type="text" name="task-input" id="description-input" />
+        <input type="submit" id="submit-task" />
+      </form>
+    </header>
+    <main id="list-container"></main>
+  </body>
 </html>

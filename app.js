@@ -24,7 +24,7 @@ inputForm.addEventListener("submit", (e) => {
 
   if (!userInput)
     return alert(
-      "Input field is empty - You can't add an empty task to the todo list"
+      `Input field is empty\nYou can't add an empty task to the TODO list`
     );
 
   tasks.push({
@@ -61,6 +61,7 @@ const editTaskButton = (task, inputElement) => {
   editBtn.addEventListener("click", () => {
     inputElement.readOnly = !inputElement.readOnly;
     editBtn.textContent = inputElement.readOnly ? "Edit" : "Save";
+    editBtn.classList.toggle("editing");
     task.description = inputElement.value;
     saveTasksToStorage();
   });
@@ -69,9 +70,13 @@ const editTaskButton = (task, inputElement) => {
 };
 
 const completeTaskInput = (task) => {
+  const checkboxContainer = document.createElement("div");
+  checkboxContainer.classList.add("complete-task-checkbox");
   const inputElement = document.createElement("input");
+  const labelElement = document.createElement("label");
   inputElement.type = "checkbox";
   inputElement.checked = task.isCompleted;
+  labelElement.textContent = "Complete Task";
 
   inputElement.addEventListener("change", (e) => {
     task.isCompleted = e.target.checked;
@@ -79,7 +84,9 @@ const completeTaskInput = (task) => {
     renderPage();
   });
 
-  return inputElement;
+  checkboxContainer.append(labelElement, inputElement);
+
+  return checkboxContainer;
 };
 
 const filterTasks = (tasks) => {
@@ -100,8 +107,8 @@ const buildPage = (tasks) => {
     taskContainer.append(
       descriptionElement,
       completeTaskInput(task),
-      deleteTaskButton(task),
-      editTaskButton(task, descriptionElement)
+      editTaskButton(task, descriptionElement),
+      deleteTaskButton(task)
     );
 
     listContainer.append(taskContainer);

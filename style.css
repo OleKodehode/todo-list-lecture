@@ -4,8 +4,216 @@
   box-sizing: border-box;
 }
 
+:root {
+  --background: hsl(180, 100%, 30%);
+  --content-background: hsl(0, 0%, 75%);
+  --content-border: hsl(0, 0%, 40%);
+  --odd-content: hsl(0, 0%, 65%);
+  --text: hsl(0, 0%, 5%);
+  --header: hsl(240, 100%, 50%);
+  --white-text: hsl(0, 0%, 95%);
+  --checked: hsl(130, 90%, 50%);
+  --hover-submit: hsl(130, 90%, 30%);
+  --delete-button: hsl(0, 90%, 50%);
+  --hover-delete: hsl(0, 90%, 30%);
+  --edit-button: hsl(65, 90%, 50%);
+  --hover-edit: hsl(65, 80%, 40%);
+}
+
+body {
+  background-color: var(--background);
+  color: var(--text);
+  display: grid;
+  place-content: center;
+  margin-top: 2svh;
+}
+
+header {
+  background-color: var(--header);
+  color: var(--white-text);
+  height: 15svh;
+  width: 75svw;
+  display: grid;
+  place-content: center;
+  border: 5px var(--content-border) solid;
+  outline: 2px var(--content-background) solid;
+}
+
+header > h1 {
+  text-align: center;
+}
+
+#submit-task {
+  padding: 1em;
+  background-color: var(--checked);
+  transition: background-color 0.2s ease-in;
+}
+
+#submit-task:hover {
+  background-color: var(--hover-submit);
+}
+
+#list-container {
+  margin: 0 auto;
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  height: 80svh;
+  overflow: auto;
+  width: 100%;
+  background-color: var(--content-background);
+  overflow-y: scroll;
+  border: 3px solid var(--content-border);
+  border-right: none;
+  outline: 2px var(--content-background) solid;
+}
+
+#list-container::-webkit-scrollbar {
+  width: 1em;
+}
+
+#list-container::-webkit-scrollbar-track {
+  background-color: hsl(0, 0%, 60%);
+  border-left: 2px solid hsl(0, 0%, 65%);
+  border-top: 2px solid hsl(0, 0%, 65%);
+  border-right: 2px solid hsl(0, 0%, 40%);
+  border-bottom: 2px solid hsl(0, 0%, 40%);
+}
+
+#list-container::-webkit-scrollbar-thumb {
+  background-color: var(--content-background);
+  border: 2px solid hsl(0, 0%, 40%);
+  box-shadow: inset -1px -1px 0 hsl(0, 0%, 95%), inset 1px 1px 0 hsl(0, 0, 60%);
+}
+
+#list-container::-webkit-scrollbar-button:single-button:vertical:decrement {
+  background-color: hsl(0, 0%, 70%);
+  height: 1em;
+  display: block;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16'><polygon points='8,4 12,10 4,10' fill='black'/></svg>");
+  background-repeat: no-repeat;
+  background-position: center;
+  border: 2px solid hsl(0, 0%, 40%);
+}
+
+#list-container::-webkit-scrollbar-button:single-button:vertical:increment {
+  background-color: hsl(0, 0%, 70%);
+  height: 1em;
+  display: block;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16'><polygon points='4,6 12,6 8,12' fill='black'/></svg>");
+  background-repeat: no-repeat;
+  background-position: center;
+  border: 2px solid hsl(0, 0%, 40%);
+}
+
+.complete-filter-container {
+  display: flex;
+  gap: 1em;
+  margin: 0.5em 0;
+  transition: color 0.2s ease;
+}
+
+.complete-filter-container:hover {
+  color: var(--checked);
+}
+
+#complete-filter {
+  background-color: var(--header);
+  border-color: var(--content-background);
+}
+
+.complete-task-checkbox {
+  transition: color 0.2s ease;
+}
+
+.complete-task-checkbox:hover {
+  color: var(--checked);
+}
+
+input[type="checkbox"] {
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: var(--content-background);
+  margin: 0;
+  font: inherit;
+  color: var(--text);
+  width: 1.15em;
+  height: 1.15em;
+  border: 0.15em solid var(--text);
+  border-radius: 0.15em;
+  display: grid;
+  place-content: center;
+}
+
+input[type="checkbox"]::before {
+  content: "";
+  width: 0.65em;
+  height: 0.65em;
+  transform: scale(0);
+  transition: 0.2s transform ease-in-out;
+  box-shadow: inset 1em 1em var(--checked);
+}
+
+input[type="checkbox"]:checked::before {
+  transform: scale(1);
+}
+
+.task-container {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  gap: 1em;
+  padding: 2em 0;
+  width: 100%;
+}
+
+.task-container:nth-child(even) {
+  background-color: var(--odd-content);
+}
+
+.complete-task-checkbox {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  gap: 0.5em;
+}
+
+button {
+  padding: 0.5em 0.75em;
+  transition: background-color 0.2s ease-in;
+}
+
 .delete-btn {
+  background-color: var(--delete-button);
+  color: var(--white-text);
+}
+
+.delete-btn:hover {
+  background-color: var(--hover-delete);
 }
 
 .edit-btn {
+  background-color: var(--edit-button);
+}
+
+.edit-btn:hover {
+  background-color: var(--hover-edit);
+}
+
+.editing {
+  background-color: var(--checked);
+}
+
+.editing:hover {
+  background-color: var(--hover-submit);
+}
+
+input[type="text"],
+.description {
+  text-align: center;
+  padding: 1em;
+}
+
+input:focus {
+  outline: 3x solid var(--delete-button);
 }
