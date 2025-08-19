@@ -115,6 +115,7 @@ header > h1 {
 
 .complete-filter-container:hover {
   color: var(--checked);
+  text-shadow: 1px 1px 1px var(--text);
 }
 
 #complete-filter {
@@ -128,6 +129,7 @@ header > h1 {
 
 .complete-task-checkbox:hover {
   color: var(--checked);
+  text-shadow: 1px 1px 1px var(--text);
 }
 
 input[type="checkbox"] {
